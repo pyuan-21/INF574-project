@@ -138,6 +138,38 @@ void LeastSquaresConformalMaps::build_pinned_point()
 		}
 	}
 
+	// test
+	/*{
+		std::vector<int> non_boundary;
+		int found = 0;
+		bool end = false;
+		for (int i = 0; i < V.rows(); i++)
+		{
+			if (end)
+				break;
+			for (int j = 0; j < boundary.rows(); j++)
+			{
+				int p_index = boundary(j, 0);
+				if (p_index != i) {
+					found++;
+					if (found == 1)
+						pinned_p1 = i;
+					else if (found == 2)
+						pinned_p2 = i;
+					else
+						end = true;
+					break;
+				}
+			}
+		}
+		
+	}*/
+
+	/*{
+		pinned_p1 = boundary(0, 0);
+		pinned_p2 = boundary(1, 0);
+	}*/
+
 	// compute uv for pinned points
 	compute_pinned_uv_callback();
 
@@ -434,8 +466,8 @@ void LeastSquaresConformalMaps::init(Eigen::MatrixXd& v, Eigen::MatrixXi& f)
 	//solver_callback = std::bind(&LeastSquaresConformalMaps::sim_LDLT_improved_method, this);
 
 	// Allow user to change it
-	compute_pinned_uv_callback = std::bind(&LeastSquaresConformalMaps::compute_pinned_uv, this);
-	//compute_pinned_uv_callback = std::bind(&LeastSquaresConformalMaps::assign_pinned_uv, this);
+	//compute_pinned_uv_callback = std::bind(&LeastSquaresConformalMaps::compute_pinned_uv, this);
+	compute_pinned_uv_callback = std::bind(&LeastSquaresConformalMaps::assign_pinned_uv, this);
 
 	// Allow user to change it
 	//build_xiyi_method_flag = 1; // build_xiyi_method1
