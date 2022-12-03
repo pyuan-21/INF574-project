@@ -444,3 +444,6 @@ glfw_config.h
 *.sln
 *.filters
 cpp.hint
+
+# using "!" symbol to include it
+!project_LSCMs/cmake/FindLIBIGL.cmake
