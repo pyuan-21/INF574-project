@@ -14,7 +14,7 @@ namespace inf574_project
 	class LeastSquaresConformalMaps
 	{
 	private:
-		int build_xiyi_method_flag;
+		int build_xiyi_method_flag = 0;
 		std::function<void(void)> solver_callback;
 		std::function<void(void)> compute_pinned_uv_callback;
 
@@ -76,6 +76,8 @@ namespace inf574_project
 		void init(Eigen::MatrixXd& v, Eigen::MatrixXi& f);
 
 		void parameterization();
+
+		void switch_flag();
 
 		Eigen::MatrixXd& get_uv();
 	};

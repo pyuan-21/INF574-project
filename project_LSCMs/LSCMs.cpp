@@ -243,10 +243,10 @@ void LeastSquaresConformalMaps::build_A_b()
 
 		switch (build_xiyi_method_flag)
 		{
-		case 2:
+		case 1:
 			build_xiyi_method2(p1, p2, p3, x1, y1, x2, y2, x3, y3, area);
 			break;
-		case 1:
+		case 0:
 		default:
 			build_xiyi_method1(p1, p2, p3, x1, y1, x2, y2, x3, y3, area);
 			break;
@@ -466,13 +466,10 @@ void LeastSquaresConformalMaps::init(Eigen::MatrixXd& v, Eigen::MatrixXi& f)
 	//solver_callback = std::bind(&LeastSquaresConformalMaps::sim_LDLT_improved_method, this);
 
 	// Allow user to change it
-	//compute_pinned_uv_callback = std::bind(&LeastSquaresConformalMaps::compute_pinned_uv, this);
-	compute_pinned_uv_callback = std::bind(&LeastSquaresConformalMaps::assign_pinned_uv, this);
+	compute_pinned_uv_callback = std::bind(&LeastSquaresConformalMaps::compute_pinned_uv, this);
+	//compute_pinned_uv_callback = std::bind(&LeastSquaresConformalMaps::assign_pinned_uv, this);
 
-	// Allow user to change it
-	//build_xiyi_method_flag = 1; // build_xiyi_method1
-	build_xiyi_method_flag = 2; // build_xiyi_method2
-
+	std::cout << "\nusing build_xiyi_method_flag: " << build_xiyi_method_flag << std::endl;
 }
 
 void LeastSquaresConformalMaps::parameterization()
@@ -481,6 +478,12 @@ void LeastSquaresConformalMaps::parameterization()
 	build_A_b();
 	solve();
 	build_uv();
+}
+
+void LeastSquaresConformalMaps::switch_flag()
+{
+	// Allow user to change it
+	build_xiyi_method_flag = (build_xiyi_method_flag + 1) % 2;
 }
 
 Eigen::MatrixXd& LeastSquaresConformalMaps::get_uv()

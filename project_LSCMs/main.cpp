@@ -16,6 +16,12 @@ Eigen::MatrixXd V_uv;
 
 inf574_project::LeastSquaresConformalMaps myLSCMs;
 
+void myLSCM()
+{
+    myLSCMs.init(V, F);
+    myLSCMs.parameterization();
+}
+
 bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier)
 {
 
@@ -38,6 +44,11 @@ bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier
       viewer.data().set_mesh(V_uv2, F);
       viewer.core().align_camera_center(V_uv2, F);
   }
+  else if (key == '4')
+  {
+      myLSCMs.switch_flag();
+      myLSCM();
+  }
 
   viewer.data().compute_normals();
 
@@ -59,12 +70,6 @@ void iglLSCM()
 
     // Scale the uv
     V_uv *= 5;
-}
-
-void myLSCM()
-{
-    myLSCMs.init(V, F);
-    myLSCMs.parameterization();
 }
 
 int main(int argc, char *argv[])
