@@ -8,7 +8,7 @@
 
 #include <igl/lscm.h>
 
-#include "LSCMs.cpp"
+#include "LSCMs.h"
 
 Eigen::MatrixXd V;
 Eigen::MatrixXi F;
@@ -74,6 +74,8 @@ int main(int argc, char *argv[])
 
   // Load a mesh in OFF format
   igl::readOFF("data/beetle.off", V, F);
+  //igl::readOFF("data/camelhead.off", V, F);
+  //igl::readOFF("data/hexagon.off", V, F);
 
   // LSCM from igl
   iglLSCM();

@@ -8,7 +8,12 @@ option(LIBIGL_WITH_OPENGL_GLFW       "Use GLFW"           ON)
 
 find_package(LIBIGL REQUIRED QUIET)
 
-file(GLOB SRCFILES *.cpp)
-add_executable(ex_bin ${SRCFILES})
+# file(GLOB SRCFILES *.cpp)
 
-target_link_libraries(ex_bin igl::core igl::opengl_glfw)
+add_executable(
+	INF574_LSCMs
+	LSCMs.h
+	LSCMs.cpp
+	main.cpp)
+
+target_link_libraries(INF574_LSCMs igl::core igl::opengl_glfw)
