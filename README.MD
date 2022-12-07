@@ -5,3 +5,8 @@ This project is to implement a parameterization method: [LSCMs](https://members.
 - Libraries used in this project:
 	1. **libigl**
 	2. **Eigen** (included by libigl)
+
+- Keyboard:
+	- press "1" to show model
+	- press "2" to show LSCMs from **libigl**
+	- press "3" to show my implementation of LSCMs
