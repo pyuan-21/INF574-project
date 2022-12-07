@@ -6,7 +6,7 @@ This project is to implement a parameterization method: [LSCMs](https://members.
 	- **libigl**
 	- **Eigen** (included by libigl)
 
-- Keyboard:
+- Keyboard mapping:
 	- press "1" to show model
 	- press "2" to show LSCMs from **libigl**
 	- press "3" to show my implementation of LSCMs
